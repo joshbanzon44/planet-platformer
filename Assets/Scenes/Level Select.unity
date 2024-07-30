@@ -3728,6 +3728,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 6632443402850205890, guid: 95e7ceafa1e4fb14b92b536009c7918b, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 805004219}
+    - target: {fileID: 6632443402850205890, guid: 95e7ceafa1e4fb14b92b536009c7918b, type: 3}
       propertyPath: levelHUD
       value: 
       objectReference: {fileID: 1590461615}

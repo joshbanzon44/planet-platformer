@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour
     // Script to controller scene changing throughout the game
     public Animator transitionAnim;
     public LevelHUD levelHUD;
+    public Camera cam;
 
     private string levelName;
 
@@ -30,7 +31,7 @@ public class SceneController : MonoBehaviour
     IEnumerator LoadLevel(string sceneName)
     {
         transitionAnim.SetTrigger("End");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(sceneName);
         transitionAnim.SetTrigger("Start");
     }

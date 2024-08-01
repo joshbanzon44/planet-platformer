@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -37,6 +38,12 @@ public class Player : MonoBehaviour
         //Movement input
         lateralMovement = Input.GetAxis("Horizontal");
         isJumping = Input.GetAxis("Jump") > 0 ? true : false;
+
+        //If player falls off map
+        if (transform.position.y < -5f)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     private void FixedUpdate()

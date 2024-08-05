@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7595612812340054934}
   - component: {fileID: 6632443402850205890}
+  - component: {fileID: 8259754410513735849}
+  - component: {fileID: -5829469789510147752}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,3 +48,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 0}
   levelHUD: {fileID: 0}
+  cam: {fileID: 0}
+--- !u!114 &8259754410513735849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5715978588014818991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317249db1a2c8dd409619539de316a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5829469789510147752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5715978588014818991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc53fb2ae55be14abb77c6c255176d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLevel: 1
+  player: {fileID: 0}
+  greenBar: {fileID: 0}
+  astronaut: {fileID: 0}
+  leftmostPlayerX: 0
+  endpoint: {fileID: 0}

@@ -12,6 +12,9 @@ public class ButtonFunctions : MonoBehaviour
         SceneManager.LoadScene("Level Select");
     }
 
+    public void Menu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 
-    
 }

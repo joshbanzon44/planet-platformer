@@ -20,7 +20,8 @@ public class Planet : MonoBehaviour
     public float gravity = 0;
     public Vector3 rotationLength; //x is days, y is hours, z is minutes
 
-
+    //Locked variable
+    private bool locked = true;
 
 
     //Runs when game starts
@@ -32,14 +33,86 @@ public class Planet : MonoBehaviour
 
         startPos = transform.position;
         startScale = transform.localScale;
+
+        transform.GetChild(1).GetComponent<Canvas>().enabled = false;
+
+        int i = 0;
+        string prevPlanet = "";
+        switch (planetName)
+        {
+            case "Earth":
+                i = 0;
+                prevPlanet = "";
+                break;
+            case "Moon":
+                i = 1;
+                prevPlanet = "Earth";
+                break;
+            case "Mars":
+                i = 2;
+                prevPlanet = "Moon";
+                break;
+            case "Venus":
+                i = 3;
+                prevPlanet = "Mars";
+                break;
+            case "Jupiter":
+                i = 4;
+                prevPlanet = "Venus";
+                break;
+            case "Mercury":
+                i = 5;
+                prevPlanet = "Jupiter";
+                break;
+            case "Saturn":
+                i = 6;
+                prevPlanet = "Mercury";
+                break;
+            case "Uranus":
+                i = 7;
+                prevPlanet = "Saturn";
+                break;
+            case "Neptune":
+                i = 8;
+                prevPlanet = "Uranus";
+                break;
+        }
+
+        //Unlock next planet if all 3 previous levels complete
+        if(PlayerPrefs.GetInt(prevPlanet) == 111)
+        {
+            string str = PlayerPrefs.GetString("PlanetsUnlocked");
+            Debug.Log(planetName);
+            Debug.Log(str);
+            char[] ch = str.ToCharArray();
+            ch[i] = '1';
+            str = new string(ch);
+            Debug.Log(str);
+            PlayerPrefs.SetString("PlanetsUnlocked",str);
+            PlayerPrefs.Save();
+        }
+
+        //Toggles whether planet is unlocked or not
+        if (PlayerPrefs.GetString("PlanetsUnlocked")[i] == '1')
+        {
+            locked = false;
+            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
+
 
     //When mouse enters collider
     private void OnMouseEnter()
     {
+
         if (Camera.main.transform.GetChild(0).GetComponent<LevelHUD>().getPlanet() != null)
         {
             return;
+        }
+
+        if (locked && planetName != "Earth")
+        {
+            transform.GetChild(1).GetComponent<Canvas>().enabled = true;
         }
 
         transform.localScale *= 1.2f;
@@ -55,6 +128,11 @@ public class Planet : MonoBehaviour
             return;
         }
 
+        if (locked && planetName != "Earth")
+        {
+            transform.GetChild(1).GetComponent<Canvas>().enabled = false;
+        }
+
         transform.localScale /= 1.2f;
         hideOutline();
     }
@@ -62,7 +140,7 @@ public class Planet : MonoBehaviour
     //When mouse is pressed down and released
     private void OnMouseUpAsButton()
     {
-        if (Camera.main.transform.GetChild(0).GetComponent<LevelHUD>().getPlanet() != null)
+        if (Camera.main.transform.GetChild(0).GetComponent<LevelHUD>().getPlanet() != null || locked)
         {
             return;
         }

@@ -35,6 +35,54 @@ public class GalaxyZoom : MonoBehaviour
         cover.GetComponent<SpriteRenderer>().enabled = true;
     }
 
+    public void NewGame()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+
+        //Each number is a reference to a planet. 1 = Unlocked, 0 = Locked
+        //The 9 planets are ordered as such:
+        //Earth, Moon, Mars, Venus, Jupiter, Mercury, Saturn, Uranus, Neptune
+        PlayerPrefs.SetString("PlanetsUnlocked", "100000000");
+
+        //Each didgit of planet number determines if level is completed. 1 = Unlocked, 0 = Locked
+        //E.g. if first level is complete, int will = 100.
+        //        second level, int = 110
+        //        third level, int = 111
+        PlayerPrefs.SetInt("Earth", 111);
+        PlayerPrefs.SetInt("Moon", 000);
+        PlayerPrefs.SetInt("Mars", 000);
+        PlayerPrefs.SetInt("Venus", 000);
+        PlayerPrefs.SetInt("Jupiter", 000);
+        PlayerPrefs.SetInt("Mercury", 000);
+        PlayerPrefs.SetInt("Saturn", 000);
+        PlayerPrefs.SetInt("Uranus", 000);
+        PlayerPrefs.SetInt("Neptune", 000);
+        PlayerPrefs.Save();
+
+        StartCoroutine(enumer());
+        canvas.enabled = false;
+        cover.GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    public void ContinueGame()
+    {
+        StartCoroutine(enumer());
+        canvas.enabled = false;
+        cover.GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    //Function to quit game on button click
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+
     IEnumerator enumer()
     {
         play = true;

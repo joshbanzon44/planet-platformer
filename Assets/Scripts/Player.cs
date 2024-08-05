@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     public float jumpPower = 1f;
 
 
-
     //References to player components
     Rigidbody2D rb;
     Animator animator;
@@ -110,6 +109,39 @@ public class Player : MonoBehaviour
         }
 
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Finish":
+                Debug.Log("Finish object collision");
+                string name = SceneManager.GetActiveScene().name;
+                Debug.Log(name.Substring(name.IndexOf("L") + 1));
+                Debug.Log(name.Substring(0, name.IndexOf("L")));
+
+                int num = 0;
+                if (name.Substring(name.IndexOf("L" + 1)) == "3")
+                    num = 111;
+                else if (name.Substring(name.IndexOf("L" + 1)) == "2")
+                    num = 110;
+                else
+                    num = 100;
+
+                PlayerPrefs.SetInt(name.Substring(0, name.IndexOf("L")), num);
+                Invoke("toLevelSelect", 1);
+                break;
+
+            default:
+                break;
+        }
+        PlayerPrefs.Save();
+    }
+
+    private void toLevelSelect()
+    {
+        SceneManager.LoadScene("Level Select");
     }
 
     //Use of function to delay jumps

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: moonTileset_6
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -1224928098, guid: 899f9acb33ed6bc41af30aa709abb217, type: 3}
+  m_Sprite: {fileID: -1702138978, guid: 7a56f92a725027e41b43563d5ae708e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
